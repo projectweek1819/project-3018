@@ -262,10 +262,14 @@ function circle3() {
 function drawing() {
 
     function moveTo(state, position) {
-        let dots= state.dots.slice();
-        if (state.addMode)
-            dots.push(position);
-        return {position: position, dots: dots, addMode: state.addMode}
+
+        let dots = state.dots;
+        if ( state.addMode )
+        {
+            dots = [ ...dots, position ];
+        }
+
+        return { ...state, position, dots };
     }
     function setAddMode(state, addMode) {
         return {position: state.position, dots: state.dots ,addMode: addMode};
@@ -280,18 +284,54 @@ function drawing() {
         return setAddMode(state, false);
     }
     function render(state) {
+        const dotCircles = state.dots.map( dot => {
+            return {type: "circle", center: dot, radius: 2, color: "green"};
+        });
+
         if (state.addMode === true) {
-            return [{type: "circle", center: state.position, radius: 2, color: "red"}];
+            return [...dotCircles, {type: "circle", center: state.position, radius: 2, color: "red"}];
         }
         else if (state.addMode === false){
-            return [{type: "circle", center: state.position, radius: 5, color: "red"}]
+            return [...dotCircles, {type: "circle", center: state.position, radius: 5, color: "red"}]
         }
-        
     }
 
     const model = {moveTo, setAddMode};
     const controller = {onMouseMove, onMouseDown, onMouseUp};
     const view = {render}
     return {model, controller, view};
+}
 
+function random(){
+
+
+
+    function throwDie(rng, dieValue)
+    {
+        return {rng: ((4578 * rng.rng ** 2 - 976161 * rng.rng + 6156489) % 79729693), dieValue: ((4578 * rng.rng ** 2 - 976161 * rng.rng + 6156489) % 79729693)%6 +1}
+    }
+    function onKeyDown(rng, dieValue) {
+            return throwDie(rng, dieValue)
+    }
+    function render(rng, dieValue) {
+        return [{type: "text", position: {x: 50, y: 50}, string: (rng.dieValue.toString())}]
+    }
+
+    const model = {throwDie}
+    const controller = {onKeyDown}
+    const view = {render}
+    return {model, controller, view}
+}
+function random2() {
+    function nextRandom(n) {
+
+        return (4578 * n ** 2 - 976161 * n + 6156489) % 79729693
+    }
+    function throwDie(rng, state) {
+        return [nextRandom(rng.rng)%6 +1, {rng: ((4578 * rng.rng ** 2 - 976161 * rng.rng + 6156489) % 79729693), grade: 0}]
+    }
+
+    const model = {nextRandom, throwDie};
+
+    return {model}
 }
