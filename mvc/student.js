@@ -268,10 +268,11 @@ function drawing() {
         return {position: position, dots: dots, addMode: state.addMode}
     }
     function setAddMode(state, addMode) {
-       
-        return {position: state.position, dots: state.dots ,addMode: state.addMode};
+        return {position: state.position, dots: state.dots ,addMode: addMode};
     }
+
     const model = {moveTo, setAddMode};
+
     return {model}
 
 }
