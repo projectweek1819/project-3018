@@ -270,9 +270,28 @@ function drawing() {
     function setAddMode(state, addMode) {
         return {position: state.position, dots: state.dots ,addMode: addMode};
     }
+    function onMouseMove(state, args) {
+        return moveTo(state, args.position)
+    }
+    function onMouseDown(state, args) {
+        return setAddMode(state, true);
+    }
+    function onMouseUp(state,args) {
+        return setAddMode(state, false);
+    }
+    function render(state) {
+        if (state.addMode === true) {
+            return [{type: "circle", center: state.position, radius: 2, color: "red"}];
+        }
+        else if (state.addMode === false){
+            return [{type: "circle", center: state.position, radius: 5, color: "red"}]
+        }
+        
+    }
 
     const model = {moveTo, setAddMode};
-
-    return {model}
+    const controller = {onMouseMove, onMouseDown, onMouseUp};
+    const view = {render}
+    return {model, controller, view};
 
 }
