@@ -1,8 +1,5 @@
-// Canvas
-function setup() {
-    createCanvas(640, 480);
-    background(100);
-}
+
+
 
 //Enemy class
 
@@ -18,24 +15,33 @@ class Enemy
 
     kill()
     {
-        this.health = 0;
+        this.health= 0;
     }
 }
 let units =  [
     unit1 = new Enemy("berserker", 3, 1, {x: 50, y: 20}),
-    unit2 = new Enemy("grunt", 1, 1, {x: 20, y: 20}),
-    unit3 = new Enemy("zombie", 5, 1, {x: 50, y: 20}),
-    unit4 = new Enemy("boss", 20, 2, {x: 20, y: 20})
+    unit2 = new Enemy("grunt", 2, 1, {x: 20, y: 20}),
+    unit3 = new Enemy("zombie", 5, 1, {x: 80, y: 100}),
+    unit4 = new Enemy("boss", 20, 2, {x: 90, y: 50})
 ];
-console.log(units)
-function getPosition() {
-    return units.position;
-}
-// Enemy spawn and attacks
-function draw() {
-    ellipse(unit1.position);
+
+
+
+// Canvas
+
+function setup() {
+    createCanvas(640, 480);
+    background(100);
+
 }
 
+// Enemy spawn and attacks
+function draw() {
+    for (i = 0; i < units.length; i++) {
+        shape = ellipse(units[i].position.x, units[i].position.y, 20, 20);
+    }
+
+}
 
 //hitbox
 function distance(p, q)
@@ -51,10 +57,12 @@ function mousePressed() {
 
     for ( const unit of units )
     {
-        if ( distance(clickPosition, unit.position) < 100 )
+        if ( distance(clickPosition, unit.position) < 20 )
         {
             unit.kill();
+
         }
     }
 }
-console.log(units)
+
+
