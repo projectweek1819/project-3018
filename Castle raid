@@ -4,12 +4,6 @@ function setup() {
 }
 
 //Enemy class
-let units =  [
-    let berserker = new Enemy("berserker", 3, 1, {x: 50, y: 20}),
-    let grunt = new Enemy("grunt", 1, 1, {x: 20, y: 20}),
-    let berserker = new Enemy("zombie", 5, 1, {x: 50, y: 20}),
-    let grunt = new Enemy("boss", 20, 2, {x: 20, y: 20});
-     ];
 
 class Enemy
 {
@@ -26,6 +20,12 @@ class Enemy
         this.health = 0;
     }
 }
+let units =  [
+    this.unit1 = new Enemy("berserker", 3, 1, {x: 50, y: 20}),
+    this.unit2 = new Enemy("grunt", 1, 1, {x: 20, y: 20}),
+    this.unit3 = new Enemy("zombie", 5, 1, {x: 50, y: 20}),
+    this.unit4 = new Enemy("boss", 20, 2, {x: 20, y: 20})
+];
 // Enemy spawn and attacks
 function enemy() {
 
