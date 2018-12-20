@@ -1,6 +1,7 @@
 // Canvas
 function setup() {
     createCanvas(640, 480);
+    background(100);
 }
 
 //Enemy class
@@ -21,16 +22,22 @@ class Enemy
     }
 }
 let units =  [
-    this.unit1 = new Enemy("berserker", 3, 1, {x: 50, y: 20}),
-    this.unit2 = new Enemy("grunt", 1, 1, {x: 20, y: 20}),
-    this.unit3 = new Enemy("zombie", 5, 1, {x: 50, y: 20}),
-    this.unit4 = new Enemy("boss", 20, 2, {x: 20, y: 20})
+    unit1 = new Enemy("berserker", 3, 1, {x: 50, y: 20}),
+    unit2 = new Enemy("grunt", 1, 1, {x: 20, y: 20}),
+    unit3 = new Enemy("zombie", 5, 1, {x: 50, y: 20}),
+    unit4 = new Enemy("boss", 20, 2, {x: 20, y: 20})
 ];
+console.log(units)
+function getPosition() {
+    return units.position;
+}
 // Enemy spawn and attacks
-function enemy() {
-
+function draw() {
+    ellipse(unit1.position);
 }
 
+
+//hitbox
 function distance(p, q)
 {
     const dx = p.x - q.x;
@@ -44,9 +51,10 @@ function mousePressed() {
 
     for ( const unit of units )
     {
-        if ( distance(clickPosition, unit.position) < 5 )
+        if ( distance(clickPosition, unit.position) < 100 )
         {
             unit.kill();
         }
     }
 }
+console.log(units)
