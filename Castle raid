@@ -3,18 +3,13 @@ function setup() {
     createCanvas(640, 480);
 }
 
-
+//Enemy class
 let units =  [
     let berserker = new Enemy("berserker", 3, 1, {x: 50, y: 20}),
     let grunt = new Enemy("grunt", 1, 1, {x: 20, y: 20}),
     let berserker = new Enemy("zombie", 5, 1, {x: 50, y: 20}),
     let grunt = new Enemy("boss", 20, 2, {x: 20, y: 20});
      ];
-
-
-function enemy() {
-
-}
 
 class Enemy
 {
@@ -31,6 +26,10 @@ class Enemy
         this.health = 0;
     }
 }
+// Enemy spawn and attacks
+function enemy() {
+
+}
 
 function distance(p, q)
 {
@@ -39,7 +38,7 @@ function distance(p, q)
 
     return (dx ** 2 + dy ** 2) ** 0.5;
 }
-
+//Player attack
 function mousePressed() {
     const clickPosition = {x: mouseX, y: mouseY};
 
